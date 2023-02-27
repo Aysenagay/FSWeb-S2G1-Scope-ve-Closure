@@ -30,10 +30,12 @@ console.log('örnek görev:', ilkiniDon(['as','sa'],function(metin){return metin
   Aşağıdaki skor1 ve skor2 kodlarını inceleyiniz ve aşağıdaki soruları altına not alarak cevaplayın
   
   1. skor1 ve skor2 arasındaki fark nedir?
-  
+  skor 1 de sonradan tanımlanan bir değişken var. Bu bir closure örneğidir.
+  skor 2 de global scope kullanılmıştır.
   2. Hangisi bir closure kullanmaktadır? Nasıl tarif edebilirsin? (yarınki derste öğreneceksin :) )
-  
+  skor 1 de closure kullanılmış. Süslü parantezden sonra bir değişken tanımlanmış.
   3. Hangi durumda skor1 tercih edilebilir? Hangi durumda skor2 daha mantıklıdır?
+  
 */
 
 // skor1 kodları
@@ -64,9 +66,12 @@ Aşağıdaki takimSkoru() fonksiyonununda aşağıdakileri yapınız:
 Not: Bu fonskiyon, aşağıdaki diğer görevler için de bir callback fonksiyonu olarak da kullanılacak
 */
 
-function takimSkoru(/*Kodunuzu buraya yazınız*/){
-    /*Kodunuzu buraya yazınız*/
+function takimSkoru(){
+  var skor = Math.floor(Math.random()*(16)+10);
+  return skor; 
+
 }
+takimSkoru();
 
 
 
@@ -86,9 +91,25 @@ Aşağıdaki macSonucu() fonksiyonununda aşağıdakileri yapınız:
 }
 */ 
 
-function macSonucu(/*Kodunuzu buraya yazınız*/){
-  /*Kodunuzu buraya yazınız*/
-}
+function macSonucu(callbackFunction,ceyrekSayisi){
+  let evSahibi = 0;
+  let konukTakim = 0;
+
+  for(let ceyrek = 1; ceyrek <= ceyrekSayisi; ceyrek++) {
+
+   evSahibi += callbackFunction ();
+   konukTakim += callbackFunction ();
+  }
+  let finalSkor = {};
+  finalSkor.EvSahibi = evSahibi;
+  finalSkor.KonukTakim = konukTakim;
+
+  let skor = {
+    EvSahibi: evSahibi,
+    KonukTakim: konukTakim
+  }
+  return finalSkor;
+  }
 
 
 
@@ -109,10 +130,13 @@ Aşağıdaki periyotSkoru() fonksiyonununda aşağıdakileri yapınız:
   */
 
 
-function periyotSkoru(/*Kodunuzu buraya yazınız*/) {
-  /*Kodunuzu buraya yazınız*/
-
+function periyotSkoru(callbackFunction) {
+  let score = {};
+  score.EvSahibi = callbackFunction();
+  score["KonukTakim"] = callbackFunction();
+  return score;
 }
+console.log(takimSkoru());
 
 
 /* Zorlayıcı Görev 5: skorTabelasi() 
